@@ -73,7 +73,7 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
   # 3. Writes data in YAML format to data.yaml
   # Read class.txt to get class names
   if not os.path.exists(path_to_classes_txt):
-    print(f"classes.txt file not found! Please create a classes.txt labelmap and move it to {path_to_classes_txt}")
+    print(f"classes.txt file not found! Please create a classes.txt labelmap and move it to {path_to_classes_txt}. Current path is {os.getcwd()}. List of files {os.listdir()}")
     return
   with open(path_to_classes_txt, "r") as f:
     classes = []
