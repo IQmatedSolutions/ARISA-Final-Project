@@ -57,7 +57,7 @@ jobs:
           uses: actions/download-artifact@v4
           with:
             name: processed-data
-            path: /dataset/processed
+            path: dataset/processed
 
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
