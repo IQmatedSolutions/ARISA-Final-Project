@@ -32,8 +32,8 @@ jobs:
         with: 
           python-version: "3.9"
 
-      # - name: Install dependencies # Step used to install all necessary Python libraries based on setup in Makefile
-      #   run: make requirements
+      - name: Install dependencies # Step used to install all necessary Python libraries based on setup in Makefile
+        run: pip install pyyaml  
 
       - name: Run preprocessing # Execute DSML.preproc.py code to make all necessary data manipulations
         run: make preprocess
