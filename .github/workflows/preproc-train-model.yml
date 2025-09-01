@@ -45,7 +45,7 @@ jobs:
           path: ./dataset/processed
 
   Train:
-      runs-on: ubuntu-latest #gpu-runner
+      runs-on: gpu-runner
       needs: Preproc
       permissions:
         contents: write  # This gives the token write access to the repository contents
@@ -58,9 +58,6 @@ jobs:
           with:
             name: processed-data
             path: dataset/processed
-        
-        - name: Check directories # Execute DSML.train.py code to make all necessary data manipulations
-          run: cd dataset/processed && ls
 
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
