@@ -1,5 +1,4 @@
 # Split between train and val folders
-
 from pathlib import Path
 import random
 import os
@@ -115,8 +114,8 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
   return
 
 # Define path to classes.txt and run function
-path_to_classes_txt = "/configs/custom_data/classes.txt"
-path_to_data_yaml = "/configs/data.yaml"
+path_to_classes_txt = "/dataset/classes.txt"
+path_to_data_yaml = "/dataset/data.yaml"
 
 train_val_split("dataset",0.9)
 create_data_yaml(path_to_classes_txt, path_to_data_yaml)
