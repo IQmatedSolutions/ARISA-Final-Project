@@ -60,7 +60,7 @@ jobs:
             path: dataset/processed
         
         - name: Check directories # Execute DSML.train.py code to make all necessary data manipulations
-          run: ls
+          run: cd dataset && ls
 
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
