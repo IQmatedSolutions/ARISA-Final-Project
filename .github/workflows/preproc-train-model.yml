@@ -73,7 +73,7 @@ jobs:
         - name: Commit and push model
           uses: devops-infra/action-commit-push@v.11
           with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+            github_token: ${{ secrets.GH_TOKEN }}
             commit_prefix: "[AUTO-COMMIT] "
             commit_message: "Update model version"
             add: /models/my_model/
