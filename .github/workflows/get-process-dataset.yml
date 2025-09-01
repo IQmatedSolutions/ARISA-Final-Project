@@ -26,32 +26,20 @@ jobs:
 
       - name: Download file from S3
         run: aws s3 cp s3://arisa-ml-datasets/ARISA_dataset/ ./dataset --recursive
-  
+
+      - name: Set up Python # Step used to setup proper Python version for code execution
+        uses: actions/setup-python@v4
+        with: 
+          python-version: "3.9"
+
+      - name: Install dependencies # Step used to install all necessary Python libraries based on setup in Makefile
+        run: make requirements
+
+      - name: Run preprocessing # Execute DSML.preproc.py code to make all necessary data manipulations
+        run: make preprocess
+
       - name: Upload preprocessed data # Attach the preprocessed data as artifact to run
         uses: actions/upload-artifact@v4
         with:
-          name: arisa-dataset
-          path: ./dataset
-
-  preprocess:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repository # Checkout repository to have the latest version of code to use
-          uses: actions/checkout@v4
-
-        - name: Set up Python # Step used to setup proper Python version for code execution
-          uses: actions/setup-python@v4
-          with: 
-            python-version: "3.11"
-
-        - name: Install dependencies # Step used to install all necessary Python libraries based on setup in Makefile
-          run: make requirements
-
-        - name: Run preprocessing # Execute DSML.preproc.py code to make all necessary data manipulations
-          run: make preprocess
-
-        - name: Upload preprocessed data # Attach the preprocessed data as artifact to run
-          uses: actions/upload-artifact@v4
-          with:
-            name: processed-data
-            path: ./configs/
+          name: processed-data
+          path: ./configs/
