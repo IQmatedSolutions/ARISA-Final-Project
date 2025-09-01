@@ -13,19 +13,19 @@ jobs:
       - name: Checkout repository # Checkout repository to have the latest version of code to use
         uses: actions/checkout@v4
 
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: eu-north-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
 
-      # - name: Create dataset directory # Get value of KAGGLE_API_KEY and save it in json file to be able to download dataset
-      #   run: |
-      #     mkdir -p $HOME/dataset
+      - name: Create dataset directory # Get value of KAGGLE_API_KEY and save it in json file to be able to download dataset
+        run: |
+          mkdir -p $HOME/dataset
 
-      # - name: Download file from S3
-      #   run: aws s3 cp s3://arisa-ml-datasets/ARISA_dataset/ ./dataset --recursive
+      - name: Download file from S3
+        run: aws s3 cp s3://arisa-ml-datasets/ARISA_dataset/ ./dataset --recursive
 
       - name: Set up Python # Step used to setup proper Python version for code execution
         uses: actions/setup-python@v4
