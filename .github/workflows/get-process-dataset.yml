@@ -1,4 +1,4 @@
-name: Download from S3
+name: Download Dataset and Preprocess
 
 on:
   workflow_dispatch:
