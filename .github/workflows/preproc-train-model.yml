@@ -67,7 +67,7 @@ jobs:
         - name: Install dependencies # Step used to install all necessary Python libraries based on setup in Makefile
           run: pip install ultralytics  
 
-        - name: Run preprocessing # Execute DSML.preproc.py code to make all necessary data manipulations
+        - name: Run training # Execute DSML.train.py code to make all necessary data manipulations
           run: make train
 
         - name: Commit and push model
