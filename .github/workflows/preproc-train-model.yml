@@ -45,7 +45,7 @@ jobs:
           path: ./dataset/processed
 
   Train:
-      runs-on: gpu-runner
+      runs-on: ubuntu-latest #gpu-runner
       needs: Preproc
       permissions:
         contents: write  # This gives the token write access to the repository contents
@@ -58,6 +58,9 @@ jobs:
           with:
             name: processed-data
             path: dataset/processed
+        
+        - name: Check directories # Execute DSML.train.py code to make all necessary data manipulations
+          run: ls
 
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
@@ -76,4 +79,4 @@ jobs:
             github_token: ${{ secrets.GH_TOKEN }}
             commit_prefix: "[AUTO-COMMIT] "
             commit_message: "Update model version"
-            add: /models/my_model/
+            add: models/my_model/
