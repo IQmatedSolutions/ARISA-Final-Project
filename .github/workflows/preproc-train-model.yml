@@ -71,7 +71,7 @@ jobs:
           run: make train
 
         - name: Commit and push model
-          uses: devops-infra/action-commit-push@v.11
+          uses: devops-infra/action-commit-push@v0.11
           with:
             github_token: ${{ secrets.GH_TOKEN }}
             commit_prefix: "[AUTO-COMMIT] "
