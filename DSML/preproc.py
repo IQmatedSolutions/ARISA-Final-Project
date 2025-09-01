@@ -84,9 +84,9 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
 
   # Create data dictionary
   data = {
-      "path": "/dataset/processed",
-      "train": "train/images",
-      "val": "validation/images",
+      "path": "../dataset/processed",
+      "train": "../train/images",
+      "val": "../validation/images",
       "nc": number_of_classes,
       "names": classes,
       "augmentations": {
