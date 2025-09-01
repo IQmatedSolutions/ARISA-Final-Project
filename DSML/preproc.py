@@ -21,10 +21,10 @@ def train_val_split(data_path,train_percent):
 
     # Define paths to image and annotation folders
     cwd = os.getcwd()
-    train_img_path = os.path.join(cwd,"dataset/train/images")
-    train_txt_path = os.path.join(cwd,"dataset/train/labels")
-    val_img_path = os.path.join(cwd,"dataset/validation/images")
-    val_txt_path = os.path.join(cwd,"dataset/validation/labels")
+    train_img_path = os.path.join(cwd,"dataset/processed/train/images")
+    train_txt_path = os.path.join(cwd,"dataset/processed/train/labels")
+    val_img_path = os.path.join(cwd,"dataset/processed/validation/images")
+    val_txt_path = os.path.join(cwd,"dataset/processed/validation/labels")
 
     # Create folders if they don"t already exist
     for dir_path in [train_img_path, train_txt_path, val_img_path, val_txt_path]:
@@ -84,7 +84,7 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
 
   # Create data dictionary
   data = {
-      "path": "/dataset",
+      "path": "/dataset/processed",
       "train": "train/images",
       "val": "validation/images",
       "nc": number_of_classes,
@@ -115,7 +115,7 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
 
 # Define path to classes.txt and run function
 path_to_classes_txt = "./dataset/classes.txt"
-path_to_data_yaml = "./dataset/data.yaml"
+path_to_data_yaml = "./dataset/processed/data.yaml"
 
 train_val_split("dataset",0.9)
 create_data_yaml(path_to_classes_txt, path_to_data_yaml)
