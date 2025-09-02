@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
     steps:
       - name: Checkout repository # Checkout repository to have the latest version of code to use
         uses: actions/checkout@v4
