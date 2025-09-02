@@ -80,8 +80,7 @@ jobs:
 
         - name: Export model to NCNN # Execute DSML.train.py code to make all necessary data manipulations
           run: | 
-            ls  
-            cp ../runs/detect/train4/weights/best.pt $HOME/models/my_model/ARISA_new.pt
+            cp /home/runner/work/_tool/Python/3.9.23/x64/lib/python3.9/site-packages/tests/tmp/runs/detect/train/weights/best.pt $HOME/models/my_model/ARISA_new.pt
             yolo export model=$HOME/models/my_model/ARISA_new.pt format=ncnn
 
         - name: Commit and push model
