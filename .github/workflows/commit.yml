@@ -1,0 +1,21 @@
+name: Download Dataset and Preprocess
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Preproc:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout repository # Checkout repository to have the latest version of code to use
+        uses: actions/checkout@v4
+
+      - name: Commit and push model
+        uses: actions4git/setup-git@v1
+      - run: echo test > test.txt  
+      - run: git add test.txt
+      - run: git commit --message 'Update model version'
+      - run: git push
