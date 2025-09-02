@@ -61,7 +61,7 @@ jobs:
 
         - name: Create dataset directory # Create directory where downloaded dataset will be saved
           run: |
-            mkdir -p $HOME/models/my_model
+            mkdir -p models/my_model
 
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
@@ -80,11 +80,11 @@ jobs:
 
         - name: Export model to NCNN # Execute DSML.train.py code to make all necessary data manipulations
           run: | 
-            cp /home/runner/work/_tool/Python/3.9.23/x64/lib/python3.9/site-packages/tests/tmp/runs/detect/train/weights/best.pt $HOME/models/my_model/ARISA_new.pt
-            yolo export model=$HOME/models/my_model/ARISA_new.pt format=ncnn
+            cp /home/runner/work/_tool/Python/3.9.23/x64/lib/python3.9/site-packages/tests/tmp/runs/detect/train/weights/best.pt models/my_model/ARISA_new.pt
+            yolo export model=models/my_model/ARISA_new.pt format=ncnn
 
         - name: Commit and push model
           uses: actions4git/setup-git@v1
-        - run: git add $HOME/models/my_model
+        - run: git add models/my_model
         - run: git commit --message 'Update model version'
         - run: git push origin other-branch:main --force
