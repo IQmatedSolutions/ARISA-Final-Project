@@ -13,10 +13,16 @@ jobs:
       - name: Checkout repository # Checkout repository to have the latest version of code to use
         uses: actions/checkout@v4
 
-      - name: Commit and push model
-        uses: actions4git/setup-git@v1
-      - run: --github-token ${{ secrets.GH_TOKEN }}  
-      - run: echo test > test.txt  
-      - run: git add test.txt
-      - run: git commit --message 'Update model version'
-      - run: git push
+      - name: Make a change
+        run: echo "Hello, GitHub Actions!" >> README.md
+      
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions-bot@users.noreply.github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automated commit via GitHub Actions"
+          git push
