@@ -49,6 +49,7 @@ jobs:
       needs: Preproc
       permissions:
         contents: write  # This gives the token write access to the repository contents
+        id-token: write
       steps:
         - name: Checkout repository # Checkout repository to have the latest version of code to use
           uses: actions/checkout@v4
@@ -83,8 +84,13 @@ jobs:
             cp /home/runner/work/_tool/Python/3.9.23/x64/lib/python3.9/site-packages/tests/tmp/runs/detect/train/weights/best.pt models/my_model/ARISA_new.pt
             yolo export model=models/my_model/ARISA_new.pt format=ncnn
 
-        - name: Commit and push model
-          uses: actions4git/setup-git@v1
-        - run: git add models/my_model
-        - run: git commit --message 'Update model version'
-        - run: git push origin other-branch:main --force
+        - name: Set up Git
+          run: |
+            git config --global user.name "GitHub Actions Bot"
+            git config --global user.email "github-actions-bot@users.noreply.github.com"
+
+        - name: Commit and push changes
+          run: |
+            git add models/my_model/
+            git commit -m "Update model version"
+            git push
