@@ -1,0 +1,18 @@
+name: Deploy Model
+on:
+  workflow_dispatch:
+
+jobs:
+  Preproc:
+    runs-on: rpi4
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout repository # Checkout repository to have the latest version of code to use
+        uses: actions/checkout@v4
+
+      - name: Pull latest version of the repository
+        run: |
+          cd repos
+          git clone  https://github.com/IQmatedSolutions/ARISA-Final-Project
