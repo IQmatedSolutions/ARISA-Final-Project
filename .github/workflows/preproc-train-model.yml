@@ -59,6 +59,10 @@ jobs:
             name: processed-data
             path: dataset/processed
 
+        - name: Create dataset directory # Create directory where downloaded dataset will be saved
+          run: |
+            mkdir -p $HOME/models/my_model
+
         - name: Set up Python # Step used to setup proper Python version for code execution
           uses: actions/setup-python@v4
           with: 
