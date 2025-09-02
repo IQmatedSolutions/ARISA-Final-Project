@@ -15,7 +15,8 @@ jobs:
 
       - name: Commit and push model
         uses: actions4git/setup-git@v1
+      - run: --github-token ${{ secrets.GH_TOKEN }}  
       - run: echo test > test.txt  
       - run: git add test.txt
       - run: git commit --message 'Update model version'
-      - run: git push --github-token ${{ secrets.GH_TOKEN }}
+      - run: git push
