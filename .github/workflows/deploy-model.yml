@@ -1,19 +1,43 @@
-name: Deploy Model
+name: Deploy to Raspberry Pi
+
+# Controls when the workflow should run
 on:
+  push:
+    # Trigger deployment only when pushing to the 'main' branch
+    branches:
+      - main
+  
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A sequence of jobs to run
 jobs:
-  Preproc:
-    runs-on: [self-hosted, rpi4]
-    permissions:
-      id-token: write
-      contents: write
-    steps:
-      - name: Checkout repository # Checkout repository to have the latest version of code to use
-        uses: actions/checkout@v4
+  deploy:
+    # Use an Ubuntu runner (the default is usually fine)
+    runs-on: ubuntu-latest
 
-      - name: Pull latest version of the repository
-        run: |
-          cd repos
-          git clone  https://github.com/IQmatedSolutions/ARISA-Final-Project
-          pip install requirements.txt
+    # Steps represent a sequence of tasks that will be executed
+    steps:
+      - name: 1. Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: 2. Deploy to Raspberry Pi4 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          # --- Raspberry Pi Connection Details (Secrets) ---
+          rpi4Host: ${{ secrets.RPI4_HOST }}
+          username: ${{ secrets.RPI4_USER }}
+          rpi4Key: ${{ secrets.RPI4_SSH_KEY }}
+          
+          # The commands to execute on the Raspberry Pi
+          script: |
+            # 1. Navigate to the deployment directory on the Pi
+            cd ~/repos/ARISA-FINAL
+            
+            # 2. Pull the latest code
+            git pull origin main
+            
+            # 3. Install dependencies
+            # pip install -r requirements.txt
+
+            echo "Deployment on RPI 4 complete!"
