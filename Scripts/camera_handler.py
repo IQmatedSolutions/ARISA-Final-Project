@@ -51,7 +51,9 @@ class WebcamStream:
     def calculate_risk(self,classname):
         if classname in ('Kokos', 'Konrad','Magda', 'Delivery-Man'):
             risk = 0
-        elif classname in ('Threat', 'fire', 'gun', 'knife'):
+        elif classname == 'fire':
+            risk = 0.7
+        elif classname in ('Threat', 'gun', 'knife'):
             risk = 1
         elif classname == 'Person' and classname not in ('Threat', 'fire', 'gun', 'knife'):
             risk = 0.5
@@ -134,7 +136,7 @@ class WebcamStream:
                     cv2.putText(annotated_frame, label, (xmin, label_ymin + baseLine), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
                     object_count += 1
-                    if risk > 0.7:
+                    if risk >= 0.7:
                         message = f'There+was+a+{classname}+object+observed+in+camera.+Alarm+activation+process+started!'
                         self.activate_alarm(message)
 
