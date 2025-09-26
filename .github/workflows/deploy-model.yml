@@ -32,7 +32,7 @@ jobs:
           # The commands to execute on the Raspberry Pi
           script: |
             # 1. Navigate to the deployment directory on the Pi
-            cd ~/repos/ARISA-FINAL
+            cd ~/repos/ARISA-Final-Project
             
             # 2. Pull the latest code
             git pull origin main
