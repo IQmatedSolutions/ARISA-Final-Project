@@ -25,9 +25,9 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           # --- Raspberry Pi Connection Details (Secrets) ---
-          rpi4Host: ${{ secrets.RPI4_HOST }}
+          host: ${{ secrets.RPI4_HOST }}
           username: ${{ secrets.RPI4_USER }}
-          rpi4Key: ${{ secrets.RPI4_SSH_KEY }}
+          key: ${{ secrets.RPI4_SSH_KEY }}
           
           # The commands to execute on the Raspberry Pi
           script: |
